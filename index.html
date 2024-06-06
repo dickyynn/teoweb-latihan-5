@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Belajar JQuery</title>
+        <script type="text/javascript" src="jquery"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+        <style>
+            #judul{
+                position:absolute;
+                top: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <button id="salam">Salam</button>
+        <h2><div id="judul">Belajar JQuery</div></h2>
+        <button id="tampil">Tampil</button>
+        <button id="hilang">Hilang</button>
+        <button id="animasi">Animasi</button>
+        <input type="text" id="isi" value="">
+        <button id="set_judul">Ganti Judul</button>
+    </body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $('#set_judul').mouseover(function(){ //onclick
+            var isi_text = $('#isi').val();//value element dgn ID isi
+            var judul = $('#judul').html();
+            //$('#judul').html(judul + ' ' + isi_text); //innerHTML
+            $('#judul').html(isi_text); //innerHTML
+        })
+
+        /*$('#isi').mouseover(function(){ //getElementByID('isi') ==> $('#isi')
+            var isi_text = $('#isi').val();
+            $('#judul').html(isi_text);
+        })*/
+
+        //getElementByID('set_judul') ===> $('#set_judul')
+    })
+</script>

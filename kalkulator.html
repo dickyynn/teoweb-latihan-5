@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kalkulator sederhana</title>
+    <script type="text/javascript" src="jquery.js"></script>
+    <link rel="stylesheet" href="stylecss.css" />
+  </head>
+  <body>
+    <h2>Ini adalah kalkulator sederhana</h2>
+    <div>
+      <!-- membuat textbox -->
+      <input type="number" id="bilangan1" placeholder="Masukkan angka" />
+      <input type="number" id="bilangan2" placeholder="Masukkan angka" />
+      <!-- textbox hasil -->
+      <input type="number" id="hasil" placeholder=" hasil" readonly />
+    </div>
+    <div>
+      <!-- membuat button -->
+      <button onclick="hitung ('+')">+</button>
+      <button onclick="hitung ('-')">-</button>
+      <button onclick="hitung ('*')">*</button>
+      <button onclick="hitung ('/')">/</button>
+      <button id="clear">C</button>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        $("operator").click(function () {
+          var operator = $(this).data("operator");
+          hitung(operator);
+        });
+        $("#clear").click(function () {
+          $("#bilangan1").val(" ");
+          $("#bilangan2").val(" ");
+          $("#hasil").val(" ");
+        });
+      });
+      function hitung(operator) {
+        // mendapatkan nilai dari kedua bilangan
+        var bil1 = parseFloat(document.getElementById("bilangan1").value);
+        var bil2 = parseFloat(document.getElementById("bilangan2").value);
+
+        // inisialisasi variable untuk menyimpan hasil
+        var hasil;
+
+        // melakukan operator
+        if (operator === "+") {
+          hasil = bil1 + bil2;
+        } else if (operator === "-") {
+          hasil = bil1 - bil2;
+        } else if (operator === "*") {
+          hasil = bil1 * bil2;
+        } else if (operator === "/") {
+          hasil = bil1 / bil2;
+        }
+
+        $("#hasil").val(hasil);
+      }
+    </script>
+  </body>
+</html>

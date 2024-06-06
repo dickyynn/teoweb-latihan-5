@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>game motor + tombol</title>
+    <link rel="stylesheet" href="style1.css" />
+    <script type="text/javascript" src="jquery.js"></script>
+  </head>
+  <body>
+    <div>
+      <h1 id="judul">Api Jquery Position and offside</h1>
+      <button onclick="gantiWarnaJudul()">ganti warna judul</button>
+    </div>
+    <div>
+      <img src="img/AW.png" alt="gambar motor" id="motor" />
+    </div>
+    <script>
+      $(document).keydown(function (e) {
+        switch (e.which) {
+          case 37: // left arrow key
+            gerak("mundur");
+            break;
+          case 38: // up arrow key
+            gerak("naik");
+            break;
+          case 39: // right arrow key
+            gerak("maju");
+            break;
+          case 40: // down arrow key
+            gerak("turun");
+            break;
+          default:
+            return; // exit this handler for other keys
+        }
+        e.preventDefault(); // prevent the default action (scrolling / moving the page)
+      });
+      var posisi = $("#motor").position(); // Mendapatkan posisi gambar motor
+      var left = posisi.left; // Mendapatkan posisi horizontal gambar motor
+      var top = posisi.top; // Mendapatkan posisi vertikal gambar motor
+      var arah = $(this).text().toLowerCase(); // Mendapatkan arah dari teks tombol yang ditekan
+
+      function gerak(arah) {
+        if (arah === "maju") {
+          $("#motor").animate({ left: "+=50px" }, "fast");
+        } else if (arah === "mundur") {
+          $("#motor").animate({ left: "-=50px" }, "fast");
+        } else if (arah === "naik") {
+          $("#motor").animate({ top: "-=50px" }, "fast");
+        } else if (arah === "turun") {
+          $("#motor").animate({ top: "+=50px" }, "fast");
+        }
+      }
+
+      function gantiWarnaJudul() {
+        // Mendapatkan nilai warna acak dalam format hexadecimal
+        var randomColor =
+          "#" + Math.floor(Math.random() * 16777215).toString(16);
+        // Mengatur warna teks judul menjadi warna acak
+        $("#judul").css("color", randomColor);
+      }
+    </script>
+  </body>
+</html>

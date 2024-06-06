@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Motor</title>
+    <link rel="stylesheet" href="style1.css" />
+    <script type="text/javascript" src="jquery.js"></script>
+  </head>
+  <body>
+    <div>
+      <h1 id="judul">Api Jquery Position and offside</h1>
+      <button onclick="gantiWarnaJudul()">Ganti Warna Judul</button>
+    </div>
+    <div>
+      <img src="img/motor.png" alt="gambar motor" id="motor" />
+    </div>
+    <script>
+      $(document).ready(function () {
+        $(document).keydown(function (e) {
+          switch (e.which) {
+            case 37: // left arrow key
+              gerak("mundur");
+              break;
+            case 38: // up arrow key
+              gerak("naik");
+              break;
+            case 39: // right arrow key
+              gerak("maju");
+              break;
+            case 40: // down arrow key
+              gerak("turun");
+              break;
+            default:
+              return; // exit this handler for other keys
+          }
+          e.preventDefault(); // prevent the default action (scrolling / moving the page)
+        });
+
+        function gerak(arah) {
+          if (arah === "maju") {
+            $("#motor").animate({ left: "+=50px" }, "fast");
+          } else if (arah === "mundur") {
+            $("#motor").animate({ left: "-=50px" }, "fast");
+          } else if (arah === "naik") {
+            $("#motor").animate({ top: "-=50px" }, "fast");
+          } else if (arah === "turun") {
+            $("#motor").animate({ top: "+=50px" }, "fast");
+          }
+        }
+
+        function gantiWarnaJudul() {
+          var randomColor =
+            "#" + Math.floor(Math.random() * 16777215).toString(16);
+          $("#judul").css("color", randomColor);
+        }
+      });
+    </script>
+  </body>
+</html>
